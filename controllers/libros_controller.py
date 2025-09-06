@@ -6,14 +6,14 @@ libros_bp = Blueprint("libros", __name__, url_prefix="/libros")
 
 @libros_bp.route("/", methods=["GET"])
 def listar_libros():
-    db = next(get_db())
+    db = get_db()
     service = LibroService(db)
     libros = service.listar_libros()
     return jsonify([{"id": l.id, "titulo": l.titulo, "precio": l.precio} for l in libros])
 
 @libros_bp.route("/<int:libro_id>", methods=["GET"])
 def obtener_libro(libro_id):
-    db = next(get_db())
+    db = get_db()
     service = LibroService(db)
     libro = service.obtener_libro(libro_id)
     if libro:
@@ -22,7 +22,7 @@ def obtener_libro(libro_id):
 
 @libros_bp.route("/", methods=["POST"])
 def crear_libro():
-    db = next(get_db())
+    db = get_db()
     service = LibroService(db)
     data = request.json
     libro = service.crear_libro(
@@ -36,7 +36,7 @@ def crear_libro():
 
 @libros_bp.route("/<int:libro_id>", methods=["PUT"])
 def actualizar_libro(libro_id):
-    db = next(get_db())
+    db = get_db()
     service = LibroService(db)
     data = request.json
     libro = service.actualizar_libro(libro_id, data.get("titulo"), data.get("precio"))
@@ -46,7 +46,7 @@ def actualizar_libro(libro_id):
 
 @libros_bp.route("/<int:libro_id>", methods=["DELETE"])
 def borrar_libro(libro_id):
-    db = next(get_db())
+    db = get_db()
     service = LibroService(db)
     libro = service.borrar_libro(libro_id)
     if libro:

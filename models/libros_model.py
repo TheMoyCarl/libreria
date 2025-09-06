@@ -1,9 +1,8 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from config.database import Base
-# -------------------------
-# Tabla de Autores
-# -------------------------
+
+
 class Autor(Base):
     __tablename__ = "autores"
 
@@ -13,9 +12,7 @@ class Autor(Base):
     libros = relationship("Libro", back_populates="autor", cascade="all, delete-orphan")
 
 
-# -------------------------
-# Tabla de Categorías
-# -------------------------
+
 class Categoria(Base):
     __tablename__ = "categorias"
 
@@ -25,9 +22,7 @@ class Categoria(Base):
     libros = relationship("Libro", back_populates="categoria", cascade="all, delete-orphan")
 
 
-# -------------------------
-# Tabla de Editoriales
-# -------------------------
+
 class Editorial(Base):
     __tablename__ = "editoriales"
 
@@ -37,9 +32,7 @@ class Editorial(Base):
     libros = relationship("Libro", back_populates="editorial", cascade="all, delete-orphan")
 
 
-# -------------------------
-# Tabla de Libros
-# -------------------------
+
 class Libro(Base):
     __tablename__ = "libros"
 
@@ -47,12 +40,12 @@ class Libro(Base):
     titulo = Column(String(255), nullable=False)
     precio = Column(Float, nullable=False)
 
-    # Claves foráneas
+
     autor_id = Column(Integer, ForeignKey("autores.id"))
     categoria_id = Column(Integer, ForeignKey("categorias.id"))
     editorial_id = Column(Integer, ForeignKey("editoriales.id"))
 
-    # Relaciones
+    
     autor = relationship("Autor", back_populates="libros")
     categoria = relationship("Categoria", back_populates="libros")
     editorial = relationship("Editorial", back_populates="libros")
