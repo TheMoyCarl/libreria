@@ -11,8 +11,8 @@ class LibroService:
     def obtener_libro(self, libro_id: int):
         return self.repo.get_libro_by_id(libro_id)
 
-    def crear_libro(self, titulo: str, precio: float):
-        return self.repo.create_libro(titulo, precio)
+    def crear_libro(self, titulo: str, precio: float, autor_id: int, categoria_id: int, editorial_id: int):
+        return self.repo.create_libro(titulo, precio, autor_id, categoria_id, editorial_id)
 
     def actualizar_libro(self, libro_id: int, titulo: str = None, precio: float = None):
         return self.repo.update_libro(libro_id, titulo, precio)
