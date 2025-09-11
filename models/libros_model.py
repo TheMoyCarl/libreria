@@ -12,7 +12,6 @@ class Autor(Base):
     libros = relationship("Libro", back_populates="autor", cascade="all, delete-orphan")
 
 
-
 class Categoria(Base):
     __tablename__ = "categorias"
 
@@ -20,7 +19,6 @@ class Categoria(Base):
     nombre = Column(String(100), nullable=False)
 
     libros = relationship("Libro", back_populates="categoria", cascade="all, delete-orphan")
-
 
 
 class Editorial(Base):
@@ -32,14 +30,12 @@ class Editorial(Base):
     libros = relationship("Libro", back_populates="editorial", cascade="all, delete-orphan")
 
 
-
 class Libro(Base):
     __tablename__ = "libros"
 
     id = Column(Integer, primary_key=True, index=True)
     titulo = Column(String(255), nullable=False)
     precio = Column(Float, nullable=False)
-
 
     autor_id = Column(Integer, ForeignKey("autores.id"))
     categoria_id = Column(Integer, ForeignKey("categorias.id"))
