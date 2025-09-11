@@ -11,13 +11,10 @@ class LibroRepository:
     def get_libro_by_id(self, libro_id: int):
         return self.db.query(Libro).filter(Libro.id == libro_id).first()
 
-    def create_libro(self, titulo: str, precio: float, autor_id: int, categoria_id: int, editorial_id: int):
+    def create_libro(self, titulo: str, precio: float):
         new_libro = Libro(
             titulo=titulo,
-            precio=precio,
-            autor_id=autor_id,
-            categoria_id=categoria_id,
-            editorial_id=editorial_id
+            precio=precio
         )
         self.db.add(new_libro)
         self.db.commit()

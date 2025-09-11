@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Float
 from config.database import Base
 
 class Libro(Base):
