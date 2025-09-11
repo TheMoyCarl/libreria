@@ -3,33 +3,6 @@ from sqlalchemy.orm import relationship
 from config.database import Base
 
 
-class Autor(Base):
-    __tablename__ = "autores"
-
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String(255), nullable=False)
-
-    libros = relationship("Libro", back_populates="autor", cascade="all, delete-orphan")
-
-
-class Categoria(Base):
-    __tablename__ = "categorias"
-
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String(100), nullable=False)
-
-    libros = relationship("Libro", back_populates="categoria", cascade="all, delete-orphan")
-
-
-class Editorial(Base):
-    __tablename__ = "editoriales"
-
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String(255), nullable=False)
-
-    libros = relationship("Libro", back_populates="editorial", cascade="all, delete-orphan")
-
-
 class Libro(Base):
     __tablename__ = "libros"
 
